@@ -1,0 +1,31 @@
+<div class="container" style="margin-top: 70px;">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>payment id</th>
+        <th>payment date</th>
+        <th>payment amount</th>
+        <th>payment method</th>
+        <th>payment status</th>
+        <th>currency</th>
+        <th>Factorial Result</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let payment of payments">
+
+        <td>{{ payment.payment_id }}</td>
+        <td> {{ payment.payment_date }}</td>
+        <td> {{ payment.payment_amount }}</td>
+        <td> {{ payment.payment_method }}</td>
+        <td> {{ payment.payment_status }}</td>
+        <td> {{ payment.currency }}</td>
+        <td> <span id="factorial-result-{{payment.payment_id}}"></span></td>
+        <td class="grid gap-3 column-gap-3">
+           <button type="button" class="p-2 g-col-6 btn btn-warning" (click)="computeFactorial(payment.payment_id)">Compute Factorial</button>
+         </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
