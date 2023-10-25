@@ -8,6 +8,7 @@
         <th>payment method</th>
         <th>payment status</th>
         <th>currency</th>
+        <th>Factorial Result</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -20,22 +21,11 @@
         <td> {{ payment.payment_method }}</td>
         <td> {{ payment.payment_status }}</td>
         <td> {{ payment.currency }}</td>
-        <td>
-          <button class="btn btn-primary" (click)="selectPayment(payment)"> Show details</button>
-        </td>
+        <td> <span id="factorial-result-{{payment.payment_id}}"></span></td>
+        <td class="grid gap-3 column-gap-3">
+           <button type="button" class="p-2 g-col-6 btn btn-warning" (click)="computeFactorial(payment.payment_id)">Compute Factorial</button>
+         </td>
       </tr>
     </tbody>
   </table>
-  <div class="card text-center" *ngIf="selectedPayment">
-      <div class="card-header">
-        # {{selectedPayment.id}}
-      </div>
-      <div class="card-block">
-        <h4 class="card-title">{{selectedPayment.name}}</h4>
-        <p class="card-text">
-          {{selectedPayment.description}}
-        </p>
-      </div>
-
-    </div>
 </div>

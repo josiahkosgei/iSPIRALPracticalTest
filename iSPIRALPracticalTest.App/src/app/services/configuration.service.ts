@@ -10,6 +10,9 @@ export class ConfigurationService {
     payments: {
       baseUrl: `${paymentsService}/api/payments`,
     },
+    factorialComputation: {
+      compute: `${paymentsService}/api/factorial`,
+    },
   };
 
   constructor() {

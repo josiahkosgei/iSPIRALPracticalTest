@@ -8,6 +8,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TransactionCreateComponent } from './transaction-create/transaction-create.component';
 import { TransactionListComponent } from './transaction-list/transaction-list.component';
 import { ConfigurationService } from './services/configuration.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ConfigurationService } from './services/configuration.service';
     BrowserModule,
     NgbModule,
     AppRoutingModule,
+    FormsModule,
     HttpClientModule
   ],
   providers: [ConfigurationService],

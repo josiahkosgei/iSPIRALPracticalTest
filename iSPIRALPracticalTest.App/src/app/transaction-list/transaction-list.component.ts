@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { Payment } from '../models/payment.interface';
+import { FactorialService } from '../services/factorial.service';
 
 @Component({
   selector: 'app-transaction-list',
@@ -12,7 +13,8 @@ export class TransactionListComponent   implements OnInit  {
   payments= new Array<Payment>();
   selectedPayment: any;
 
-  constructor(public dataService: DataService) { }
+  constructor(public dataService: DataService,
+    public factorialService: FactorialService) { }
 
   ngOnInit() {
     this.dataService.getPayments().subscribe(data=>{
@@ -21,5 +23,11 @@ export class TransactionListComponent   implements OnInit  {
   }
   public selectPayment(contact: any){
     this.selectedPayment = contact;
+  }
+  public computeFactorial(payment_id: number){
+    return this.factorialService.compute(payment_id).subscribe(data=>{
+      let span = document.getElementById(`factorial-result-${payment_id}`) as HTMLElement ;
+      span.innerText = data.toString();
+    });
   }
 }
