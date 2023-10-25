@@ -1,6 +1,6 @@
 # iSPIRAL Practical Test
 
-The Project root directory contains Backend(`Api` and `Data` Layer) and FrontEnd(in `iSPIRALPracticalTest.App` directory) projects
+The Project root directory contains Backend and FrontEnd directories
 
 ## Environment Requirements
 
@@ -11,8 +11,10 @@ The Project root directory contains Backend(`Api` and `Data` Layer) and FrontEnd
 
 ## iSPIRAL Practical Test Api
 
-Working Directory
-```iSPIRALPracticalTest.Api```
+Working Directory is
+```Backend/iSPIRALPracticalTest.API```
+
+```Backend/iSPIRALPracticalTest.Data``` Is the data layer for this project and it contains DBContext and Repository definitions
 
 ### Follow the steps to setup the project
 
@@ -32,7 +34,7 @@ Working Directory
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.7.
 
 Working Directory
-```cd /iSPIRALPracticalTest.App```
+```cd FrontEnd/iSPIRALPracticalTest.App```
 
 * Run `npm install` to install the dependancies
 
