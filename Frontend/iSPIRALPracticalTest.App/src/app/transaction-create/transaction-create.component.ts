@@ -3,6 +3,7 @@ import { DataService } from '../services/data.service';
 import { Payment } from '../models/payment.interface';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { CreatePaymentDto } from '../models/create-payment.dto';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-transaction-create',
@@ -42,6 +43,7 @@ export class TransactionCreateComponent implements OnInit {
   });
   constructor(
     public dataService: DataService,
+    private toastr: ToastrService,
     private formBuilder: FormBuilder
   ) {}
 
@@ -66,6 +68,9 @@ export class TransactionCreateComponent implements OnInit {
     };
     this.dataService.createPayment(createPaymentDto);
     this.paymentForm.reset();
+  }else{
+
+    this.toastr.error('All fields required');
   }
   }
 }

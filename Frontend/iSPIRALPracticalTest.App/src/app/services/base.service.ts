@@ -11,7 +11,7 @@ export class BaseService {
     // Inner method that actually does the job.
     // Needed because we cannot rely on "this" here
     private static handleError(error: any, message: string): Observable<never> {
-        console.log(error);
+        console.error(error);
         return throwError(message);
     }
 

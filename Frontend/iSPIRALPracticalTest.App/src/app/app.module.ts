@@ -9,6 +9,8 @@ import { TransactionCreateComponent } from './transaction-create/transaction-cre
 import { TransactionListComponent } from './transaction-list/transaction-list.component';
 import { ConfigurationService } from './services/configuration.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { ToastNoAnimationModule, ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
+    CommonModule,
+    ToastNoAnimationModule.forRoot(),
     NgbModule,
     AppRoutingModule,
     FormsModule,
