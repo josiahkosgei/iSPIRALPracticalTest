@@ -12,17 +12,13 @@ namespace iSPIRALPracticalTest.Data.Repository
         }
         public async Task<T> AddAsync(T entity)
         {
-            using (var dbContextTransaction = await _context.Database.BeginTransactionAsync())
-            {
-                _context.Set<T>().Add(entity);
-                await _context.SaveChangesAsync();
 
-                await dbContextTransaction.CommitAsync();
-            }
+            _context.Set<T>().Add(entity);
+            await _context.SaveChangesAsync();
             return entity;
         }
 
-        public async Task DeleteAsync(T entity)
+        public async Task<bool> DeleteAsync(T entity)
         {
             using (var dbContextTransaction = await _context.Database.BeginTransactionAsync())
             {
@@ -31,9 +27,10 @@ namespace iSPIRALPracticalTest.Data.Repository
 
                 await dbContextTransaction.CommitAsync();
             }
+            return true;
         }
 
-        public async Task<IReadOnlyList<T>> GetAllAsync()
+        public async Task<IList<T>> GetAllAsync()
         {
             return await _context.Set<T>().ToListAsync();
         }
@@ -43,15 +40,16 @@ namespace iSPIRALPracticalTest.Data.Repository
             return await _context.Set<T>().FindAsync(id);
         }
 
-        public async Task<T> UpdateAsync(T entity)
+        public async Task<T> UpdateAsync(int Id, T entity)
         {
-            using (var dbContextTransaction = await _context.Database.BeginTransactionAsync())
-            {
-                _context.Entry(entity).State = EntityState.Modified;
-                await _context.SaveChangesAsync();
+            var dbEntity = await _context.FindAsync<T>(Id);
 
-                await dbContextTransaction.CommitAsync();
-            }
+            _context.Entry(dbEntity).CurrentValues.SetValues(entity);
+
+            _context.Entry(dbEntity).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+
             return entity;
         }
     }

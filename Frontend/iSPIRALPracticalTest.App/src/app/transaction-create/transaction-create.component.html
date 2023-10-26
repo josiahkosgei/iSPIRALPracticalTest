@@ -5,29 +5,50 @@
     <div class="col-sm-8 offset-sm-2">
 
       <div>
-        <form>
+        <form class="needs-validation" novalidate [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
+
           <div class="form-group">
-            <label for="id">ID</label>
-            <input [(ngModel)]="payment.payment_id" type="text" name="id" class="form-control" id="id" aria-describedby="idHelp" placeholder="Enter ID">
-            <small id="idHelp" class="form-text text-muted">Enter your payment’s ID</small>
+            <label for="id">Select Order</label>
+            <select class="form-select form-select-lg mb-3" aria-label="Select Order" placeholder="Select Order"
+              formControlName="order_id" required>
 
-            <label for="name">Payment Name</label>
-            <input [(ngModel)]="payment.customer_id" type="text" name="name" class="form-control" id="name" aria-describedby="nameHelp" placeholder="Enter your name">
-            <small id="nameHelp" class="form-text text-muted">Enter your payment’s name</small>
+              <option *ngFor="let order of orders" [value]="order.id">{{order.name}}</option>
+            </select>
+            <div *ngIf="f.order_id.errors" class="invalid-feedback">
+              <div *ngIf="f.order_id.errors">This is required</div>
+            </div>
+            <label for="payment_amount">Amount</label>
+            <input formControlName="payment_amount" type="number" name="payment_amount" class="form-control"
+              id="payment_amount" aria-describedby="nameHelp" placeholder="Enter amount" required>
 
-            <label for="email">Payment Email</label>
-            <input [(ngModel)]="payment.order_id" type="text" name="email" class="form-control" id="email" aria-describedby="emailHelp"
-              placeholder="Enter your email">
-            <small id="nameHelp" class="form-text text-muted">Enter your payment’s email</small>
 
-            <label for="description">Payment Description</label>
-            <textarea [(ngModel)]="payment.payment_date" name="description" class="form-control" id="description" aria-describedby="descHelp">
-                      </textarea>
-            <small id="descHelp" class="form-text text-muted">Enter your payment’s description</small>
+            <div *ngIf="f.payment_amount.errors" class="invalid-feedback">
+              <div *ngIf="f.payment_amount.errors">This is required</div>
+            </div>
+            <label for="payment_method">Payment Method</label>
+            <select class="form-select form-select-lg mb-3" name="payment_method" id="payment_method"
+              aria-label="Payment Method" placeholder="Payment Method" formControlName="payment_method" required>
+
+              <option *ngFor="let paymentMethod of paymentMethods" [value]="paymentMethod">{{paymentMethod}}</option>
+            </select>
+
+            <div *ngIf="f.payment_method.errors" class="invalid-feedback">
+              <div *ngIf="f.payment_method.errors">This is required</div>
+            </div>
+            <label for="currency">Currency</label>
+            <select class="form-select form-select-lg mb-3" name="currency" id="currency" aria-label="Payment Currency"
+              placeholder="Payment Currency" formControlName="currency" required>
+
+              <option *ngFor="let curr of currencies" [value]="curr.currency_code">{{curr.currency_name}}</option>
+            </select>
+
+            <div *ngIf="f.currency.errors" class="invalid-feedback">
+              <div *ngIf="f.currency.errors">This is required</div>
+            </div>
 
           </div>
+          <button class="btn btn-primary" type="submit">Create Item</button>
         </form>
-        <button class="btn btn-primary" (click)="createPayment()">Create payment</button>
       </div>
     </div>
   </div>

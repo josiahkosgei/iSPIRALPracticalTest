@@ -4,6 +4,7 @@ import { ConfigurationService } from './configuration.service';
 import { HttpClient } from "@angular/common/http";
 import { BehaviorSubject, Observable, catchError, skip } from 'rxjs';
 import { BaseService } from './base.service';
+import { CreatePaymentDto } from '../models/create-payment.dto';
 @Injectable({
   providedIn: 'root',
 })
@@ -517,9 +518,6 @@ export class DataService extends BaseService{
     super();
   }
 
-  public getPaymentsff(): Array<Payment> {
-    return this.payments;
-  }
 
   getPayments(): Observable<Payment[]> {
     const result = new BehaviorSubject<Payment[]>([new Payment()]);
@@ -533,7 +531,42 @@ export class DataService extends BaseService{
       });
       return result.asObservable().pipe(skip(1));
 }
-  public createPayment(payment: Payment) {
-    this.payments.push(payment);
+  getPayment(id: number): Observable<Payment> {
+    const result = new BehaviorSubject<Payment>(new Payment());
+
+    this.http.get<Payment>(
+       `${this.configuration.webApi.payments.baseUrl}/${id}`,
+       this.httpOptions)
+       .pipe(catchError(this.catchError))
+       .subscribe((entityResponse: any) => {
+         result.next(entityResponse.responseObject);
+     });
+     return result.asObservable().pipe(skip(1));
+  }
+  createPayment(entity: CreatePaymentDto): Observable<Payment> {
+    const result = new BehaviorSubject<Payment>(new Payment());
+
+    this.http.post<Payment>(
+       `${this.configuration.webApi.payments.baseUrl}`,
+       entity,
+       this.httpOptions)
+       .pipe(catchError(this.catchError))
+       .subscribe((entityResponse: any) => {
+         result.next(entityResponse.responseObject);
+     });
+     return result.asObservable().pipe(skip(1));
+  }
+  updatePayment(entity: Payment): Observable<Payment> {
+    const result = new BehaviorSubject<Payment>(new Payment());
+
+    this.http.patch<Payment>(
+       `${this.configuration.webApi.payments.baseUrl}`,
+       entity,
+       this.httpOptions)
+       .pipe(catchError(this.catchError))
+       .subscribe((entityResponse: any) => {
+         result.next(entityResponse.responseObject);
+     });
+     return result.asObservable().pipe(skip(1));
   }
 }

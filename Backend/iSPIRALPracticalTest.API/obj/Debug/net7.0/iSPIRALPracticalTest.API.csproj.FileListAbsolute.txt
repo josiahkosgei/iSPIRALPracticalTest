@@ -154,3 +154,7 @@ C:\DEV\direct\iSPIRALPracticalTest\Backend\iSPIRALPracticalTest.API\obj\Debug\ne
 C:\DEV\direct\iSPIRALPracticalTest\Backend\iSPIRALPracticalTest.API\obj\Debug\net7.0\iSPIRALPracticalTest.API.pdb
 C:\DEV\direct\iSPIRALPracticalTest\Backend\iSPIRALPracticalTest.API\obj\Debug\net7.0\iSPIRALPracticalTest.API.genruntimeconfig.cache
 C:\DEV\direct\iSPIRALPracticalTest\Backend\iSPIRALPracticalTest.API\obj\Debug\net7.0\ref\iSPIRALPracticalTest.API.dll
+C:\DEV\direct\iSPIRALPracticalTest\Backend\iSPIRALPracticalTest.API\bin\Debug\net7.0\Polly.dll
+C:\DEV\direct\iSPIRALPracticalTest\Backend\iSPIRALPracticalTest.API\bin\Debug\net7.0\Polly.Core.dll
+C:\DEV\direct\iSPIRALPracticalTest\Backend\iSPIRALPracticalTest.API\bin\Debug\net7.0\AutoMapper.dll
+C:\DEV\direct\iSPIRALPracticalTest\Backend\iSPIRALPracticalTest.API\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
